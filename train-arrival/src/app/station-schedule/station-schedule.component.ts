@@ -25,8 +25,18 @@ export class StationScheduleComponent implements OnInit{
 
   ngOnInit() {
     console.log("Отображаем расписание");
-    this.schedule$ = this.stationService.selectedStationCode$.pipe(
-      switchMap(code => code ? this.apiService.getSchedule(code) : []),
+
+    this.schedule$ = this.stationService.selectedStations$.pipe(
+      switchMap(([from, to]) => {
+        if (from && to) {
+          console.log(`Ищем расписание между ${from} и ${to}`);
+          return this.apiService.searchRoutes(from, to);
+        } else if (from) {
+          console.log(`Ищем расписание для станции ${from}`);
+          return this.apiService.getSchedule(from);
+        }
+        return [];
+      }),
       map(schedule => schedule && schedule.length ? this.filterUniqueDepartures(schedule) : [])
     );
   }

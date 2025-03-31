@@ -114,8 +114,8 @@ app.get('/searchRoutes', async (req, res) => {
                 lang: 'ru_RU'
             }
         });
-        const routes = response.data.segments;
-        res.json({ routes });
+
+        res.json(response.data);
     } catch (error) {
         console.error('Ошибка при поиске маршрутов:', error);
         res.status(500).json({ error: 'Ошибка сервера' });

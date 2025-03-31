@@ -15,7 +15,8 @@ export class SelectButtonComponent {
   constructor(private stationService: StationService) {}
 
   onSelectStation() {
-    this.stationService.setStationCode(this.code);
+    this.stationService.resetStations();
+    this.stationService.setFromStation(this.code);
     this.stationSelected.emit(this.code);
     console.log(this.code);
   }

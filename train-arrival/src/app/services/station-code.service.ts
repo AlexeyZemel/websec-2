@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, combineLatest} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StationService {
-  private selectedStationCode = new BehaviorSubject<string | null>(null);
-  selectedStationCode$ = this.selectedStationCode.asObservable();
+  private fromStationCode = new BehaviorSubject<string | null>(null);
+  private toStationCode = new BehaviorSubject<string | null>(null);
 
-  setStationCode(code: string) {
-    this.selectedStationCode.next(code);
-    console.log("Код установлен");
+  fromStationCode$ = this.fromStationCode.asObservable();
+  toStationCode$ = this.toStationCode.asObservable();
+
+  selectedStations$ = combineLatest([this.fromStationCode$, this.toStationCode$]);
+
+  setFromStation(code: string) {
+    this.fromStationCode.next(code);
+    console.log("Выбрана отправная станция:", code);
+  }
+
+  setToStation(code: string | null) {
+    this.toStationCode.next(code);
+    console.log(code ? `Выбрана станция назначения: ${code}` : "Станция назначения сброшена");
+  }
+
+  resetStations() {
+    this.toStationCode.next(null);
+    this.fromStationCode.next(null);
   }
 }

@@ -1,1 +1,25 @@
-<p>routes works!</p>
+<div class="search-container">
+  <div class="input-group">
+    <div class="input-area">
+      <label>Откуда</label>
+      <input [(ngModel)]="fromInput" placeholder="Например: Самара" />
+    </div>
+
+    <div class="input-area">
+      <label>Куда</label>
+      <input [(ngModel)]="toInput" placeholder="Например: Москва" />
+    </div>
+
+    <button (click)="search()" class="search-button">Найти</button>
+  </div>
+</div>
+
+<div *ngIf="fromStation && toStation; else notFound">
+  <app-station-schedule *ngIf="showScheduleClicked && fromStation && toStation"></app-station-schedule>
+</div>
+
+<ng-template #notFound>
+  <div class="not-found">
+    <p>Маршруты не найдены</p>
+  </div>
+</ng-template>

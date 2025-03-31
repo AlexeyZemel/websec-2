@@ -49,7 +49,16 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/nearestStations`, { params: { lat, lng, distance } });
   }
 
-  searchRoutes(from: string, to: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/searchRoutes`, { params: { from, to } });
+  searchRoutes(from: string, to: string): Observable<StationSchedule[]> {
+    console.log("Получаем расписание между станциями");
+    return this.http.get<{ segments: any[] }>(`${this.apiUrl}/searchRoutes`, { params: { from, to } }).pipe(
+      map(response => response.segments ? response.segments.map(segment => ({
+        title: segment.thread.title,
+        departure: segment.departure
+      })) : [])
+    );
   }
+
+
+
 }
