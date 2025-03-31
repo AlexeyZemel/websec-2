@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 export interface Station {
@@ -8,6 +8,12 @@ export interface Station {
   code: string;
   transport_type: string;
 }
+
+export interface StationSchedule {
+  title: string;
+  departure: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +35,14 @@ export class ApiService {
     );
   }
 
-  getSchedule(stationCode: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/schedule`, { params: { station: stationCode } });
+  getSchedule(stationCode: string): Observable<StationSchedule[]> {
+    console.log("Получаем расписание");
+    return this.http.get<{ schedule: any[] }>(`${this.apiUrl}/schedule`, { params: { station: stationCode } }).pipe(
+      map(response => response.schedule.map(item => ({
+        title: item.thread.title,
+        departure: item.departure
+      })))
+    );
   }
 
   getNearestStations(lat: number, lng: number, distance: number = 50): Observable<any> {

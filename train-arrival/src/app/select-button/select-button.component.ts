@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {StationService} from "../services/station-code.service";
 
 @Component({
   selector: 'app-select-button',
@@ -9,4 +10,13 @@ import {Component, Input} from '@angular/core';
 })
 export class SelectButtonComponent {
   @Input() code!: string;
+  @Output() stationSelected = new EventEmitter<string>();
+
+  constructor(private stationService: StationService) {}
+
+  onSelectStation() {
+    this.stationService.setStationCode(this.code);
+    this.stationSelected.emit(this.code);
+    console.log(this.code);
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Station} from "../services/api.service";
 import {SelectButtonComponent} from "../select-button/select-button.component";
 
@@ -13,4 +13,9 @@ import {SelectButtonComponent} from "../select-button/select-button.component";
 })
 export class StationCardComponent {
   @Input() station!: Station;
+  @Output() stationSelected = new EventEmitter<string>();
+
+  onStationSelected(code: string) {
+    this.stationSelected.emit(code);
+  }
 }

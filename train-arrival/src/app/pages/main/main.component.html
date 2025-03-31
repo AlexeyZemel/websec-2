@@ -4,7 +4,7 @@
   <button (click)="search()" class="search-button" >Найти</button>
 </div>
 <div *ngIf="station; else notFound">
-  <app-station-card [station]="station"></app-station-card>
+  <app-station-card [station]="station" (stationSelected)="onStationSelected($event)"></app-station-card>
 </div>
 
 <ng-template #notFound>
@@ -12,5 +12,7 @@
     <p>Нет станций</p>
   </div>
 </ng-template>
+
+<app-station-schedule *ngIf="showScheduleClicked && station != undefined"></app-station-schedule>
 
 
