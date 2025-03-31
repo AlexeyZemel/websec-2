@@ -1,0 +1,16 @@
+<div class="input-area">
+  <label>Введите название станции</label>
+  <input [(ngModel)]="inputValue" placeholder="Например: Самара" />
+  <button (click)="search()" class="search-button" >Найти</button>
+</div>
+<div *ngIf="station; else notFound">
+  <app-station-card [station]="station"></app-station-card>
+</div>
+
+<ng-template #notFound>
+  <div class="not-found">
+    <p>Нет станций</p>
+  </div>
+</ng-template>
+
+
