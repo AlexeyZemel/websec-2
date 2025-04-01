@@ -1,0 +1,112 @@
+.favorites-section {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.favorites-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.favorites-title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.favorites-count {
+  background: #4a90e2;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.favorite-item:hover {
+  background: #f0f0f0;
+}
+
+.station-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.station-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.station-code {
+  font-size: 0.85rem;
+  color: #666;
+  font-family: monospace;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #ffebee;
+  color: #f44336;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px 0;
+  color: #999;
+}
+
+.empty-state svg {
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .favorites-section {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .favorite-item {
+    padding: 10px 12px;
+  }
+}

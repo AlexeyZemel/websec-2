@@ -8,7 +8,7 @@
 </div>
 
 <ng-template #notFound>
-  <div class="not-found">
+  <div class="not-found" *ngIf="showScheduleClicked">
     <p>Нет станций</p>
   </div>
 </ng-template>

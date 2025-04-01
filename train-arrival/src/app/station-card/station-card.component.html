@@ -2,6 +2,7 @@
   <div class="station-header desktop-only">
     <div class="header-name">НАЗВАНИЕ</div>
     <div class="header-code">КОД СТАНЦИИ</div>
+    <div class="header-favorite">ИЗБРАННОЕ</div>
     <div class="header-action">ДЕЙСТВИЕ</div>
   </div>
 
@@ -14,6 +15,13 @@
     <div class="station-data">
       <div class="mobile-label">Код станции</div>
       <div class="station-code">{{station.code}}</div>
+    </div>
+
+    <div class="station-favorite">
+      <div class="mobile-label">Избранное</div>
+      <button (click)="toggleFavorite()" [class.favorited]="isFavorite()">
+        {{ isFavorite() ? '★' : '☆' }}
+      </button>
     </div>
 
     <div class="station-action">

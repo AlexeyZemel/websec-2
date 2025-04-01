@@ -16,6 +16,7 @@ export class StationService {
   setFromStation(code: string) {
     this.fromStationCode.next(code);
     console.log("Выбрана отправная станция:", code);
+    console.log("Текущее состояние fromStationCode:", this.fromStationCode.value);
   }
 
   setToStation(code: string | null) {

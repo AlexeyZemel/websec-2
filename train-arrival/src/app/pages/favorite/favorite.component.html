@@ -1,0 +1,26 @@
+<div class="favorites-section">
+  <div class="favorites-header">
+    <h3 class="favorites-title">Избранные станции</h3>
+    <span class="favorites-count">{{ (favorites$ | async)?.length || 0 }}</span>
+  </div>
+
+  <div *ngIf="(favorites$ | async)?.length; else empty" class="favorites-list">
+    <div *ngFor="let station of favorites$ | async" class="favorite-item">
+      <div class="station-info">
+        <span class="station-name">{{ station.title }}</span>
+        <span class="station-code">{{ station.code }}</span>
+      </div>
+      <button (click)="removeFavorite(station)" class="remove-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <div class="empty-state">
+      <p>Нет избранных станций</p>
+    </div>
+  </ng-template>
+</div>

@@ -2,7 +2,7 @@
   <p>Расписание</p>
 </div>
 
-<div class="schedule-container" *ngIf="schedule$ | async as schedule; else loading">
+<div class="schedule-container" *ngIf="schedule; else loading">
   <div class="schedule-column-headers desktop-only">
     <p class="header-title">Маршрут</p>
     <p class="header-departure">Отправление</p>
@@ -23,4 +23,3 @@
     <p>Загрузка расписания...</p>
   </div>
 </ng-template>
-

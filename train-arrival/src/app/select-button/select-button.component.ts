@@ -18,6 +18,6 @@ export class SelectButtonComponent {
     this.stationService.resetStations();
     this.stationService.setFromStation(this.code);
     this.stationSelected.emit(this.code);
-    console.log(this.code);
+    console.log("Выбрана станция:", this.code);
   }
 }
